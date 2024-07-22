@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Movie;
+use App\Models\Theater;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,9 @@ class ShowTimeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'movie_id' => Movie::factory(),
+            'theater_id' => Theater::factory(),
+            'show_date' => $this->faker->dateTime()
         ];
     }
 }

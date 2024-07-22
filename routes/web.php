@@ -9,22 +9,47 @@ Route::get('/', function () {
 });
 
 Route::get('/movie', function () {
-    return view('movies', [ 'movies' => Movie::all()]);
+    $movies = Movie::with('showTime')->paginate(9);
+    return view('movies.index', [ 'movies' => $movies]);
 });
+
+Route::get('/movie/create', function () {
+   return view('movies.create');
+});
+
 
 Route::get('/movie/{id}', function ($id) {
     $movie = Movie::find($id);
-    return view('movie', ['movie' => $movie]);
+    return view('movies.show', ['movie' => $movie]);
 });
 
+Route::post('/movie', function (){
+    //Validation
+    Movie::create([
+        'title' => request('title'),
+        'director' =>  request('director'),
+        'protagonist' =>  request('protagonist'),
+        'duration' =>  request('duration'),
+        'synopsis' =>  request('synopsis'),
+        'release' =>  request('release'),
+        'poster' =>  request('poster'),
+        'genre' =>  request('genre')
+    ]);
+    return redirect('/movie');
+});
 
 Route::get('/theater', function () {
-    return view('theaters', [ 'theaters' => Theater::all()]);
+    $theaters = Theater::with('showTime')->simplePaginate(6);
+    return view('theaters.index', [ 'theaters' => $theaters]);
+});
+
+Route::get('/theater/create', function ($id) {
+    return view('theaters.create');
 });
 
 Route::get('/theater/{id}', function ($id) {
     $theater = Theater::find($id);
-    return view('theater', ['theater' => $theater]);
+    return view('theaters.show', ['theater' => $theater]);
 });
 
 

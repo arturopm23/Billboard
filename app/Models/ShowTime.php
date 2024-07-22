@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class ShowTime extends Model
 {
     use HasFactory;
+
+    public function theater(){
+        return $this->belongsto(Theater::class);
+    }
+
+    public function movie(){
+        return $this->belongsTo(Movie::class);
+    }
 }
