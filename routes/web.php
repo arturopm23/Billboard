@@ -9,7 +9,7 @@ Route::get('/', function () {
 });
 
 Route::get('/movie', function () {
-    $movies = Movie::with('showTime')->paginate(9);
+    $movies = Movie::with('showTime')->latest()->paginate(9);
     return view('movies.index', [ 'movies' => $movies]);
 });
 
@@ -43,7 +43,7 @@ Route::get('/theater', function () {
     return view('theaters.index', [ 'theaters' => $theaters]);
 });
 
-Route::get('/theater/create', function ($id) {
+Route::get('/theater/create', function () {
     return view('theaters.create');
 });
 

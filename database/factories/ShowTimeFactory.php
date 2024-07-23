@@ -21,7 +21,7 @@ class ShowTimeFactory extends Factory
         return [
             'movie_id' => Movie::factory(),
             'theater_id' => Theater::factory(),
-            'show_date' => $this->faker->dateTime()
+            'show_date' => $this->faker->randomElement(['13:00', '16:00', '20:00', '23:00'])
         ];
     }
 }
