@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Movie::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Theater::class)->constrained()->cascadeOnDelete();
-            $table->dateTime('show_date');
+            $table->enum('show_date', ['13:00', '16:00', '20:00', '23:00']);
             $table->timestamps();
         });
     }
