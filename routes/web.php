@@ -9,7 +9,7 @@ Route::get('/', function () {
 });
 
 Route::get('/movie', function () {
-    $movies = Movie::with('showTime')->latest()->paginate(9);
+    $movies = Movie::with('showTime')->latest()->paginate(8);
     return view('movies.index', [ 'movies' => $movies]);
 });
 
@@ -24,7 +24,18 @@ Route::get('/movie/{id}', function ($id) {
 });
 
 Route::post('/movie', function (){
-    //Validation
+    request()->validate([
+        'title' => ['required'],
+        'director' => ['required'],
+        'protagonist' => ['required'],
+        'duration' => ['required', 'digits_between:1,3'],
+        'synopsis' => ['required', 'min:80'],
+        'release' => ['required', 'date_format:m-d-Y'],
+        'poster' => ['required'],
+        'genre' => ['required', 'min:5']
+    ]);
+    
+
     Movie::create([
         'title' => request('title'),
         'director' =>  request('director'),
@@ -39,7 +50,7 @@ Route::post('/movie', function (){
 });
 
 Route::get('/theater', function () {
-    $theaters = Theater::with('showTime')->simplePaginate(6);
+    $theaters = Theater::with('showTime')->simplePaginate(4);
     return view('theaters.index', [ 'theaters' => $theaters]);
 });
 
