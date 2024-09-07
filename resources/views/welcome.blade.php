@@ -3,8 +3,8 @@
         Home Page
     </x-slot:heading>
     
-    <div class="space-y-4">
-        <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+    <div class="space-y-3">
+        <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
 
             <div class="group relative">
                 <div class="aspect-h-1 aspect-w-1 w-full h-60 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75">
@@ -24,7 +24,7 @@
 
             <div class="group relative">
                 <div class="aspect-h-1 aspect-w-1 w-full h-60 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75">
-                    <img src="https://lh3.googleusercontent.com/proxy/GKK5b0a7-sW9fJ60dboRTctT-ZJ10tagM_do8a7vZzdL0kVFKxqruJeKAB-Hk8jOfN1yqPSJlY8-uub-PZOm8BZggUPDesgpq6YckJtZgkJYubD-bKParY--T5hjXsVssH8siNCwLe_GeV8e-QoMjVyjB2w_IWI" alt="Create Theater" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                    <img src="https://offloadmedia.feverup.com/barcelonasecreta.com/wp-content/uploads/2022/08/08091519/cine-rojo-1024x683.jpg" alt="Create Theater" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
                 </div>
                 <div class="mt-4 flex justify-between">
                     <div>
