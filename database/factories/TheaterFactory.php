@@ -19,7 +19,7 @@ class TheaterFactory extends Factory
         return [
             'name' => $this->faker->company(),
             'poster' => $this->faker->imageUrl($width = 640, $height = 480),
-            '3d' => $this->faker->boolean($chanceOfGettingTrue = 50),
+            'threeD' => $this->faker->boolean($chanceOfGettingTrue = 50),
             'dolby' => $this->faker->boolean($chanceOfGettingTrue = 50),
             'created_at' => now(),
             'updated_at' => now(),

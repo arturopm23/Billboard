@@ -1,69 +1,51 @@
 <?php
 
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\TheaterController;
 use App\Models\Movie;
 use App\Models\Theater;
 use Illuminate\Support\Facades\Route;
 
+//HOME PAGE
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/movie', function () {
-    $movies = Movie::with('showTime')->latest()->paginate(8);
-    return view('movies.index', [ 'movies' => $movies]);
-});
-
-Route::get('/movie/create', function () {
-   return view('movies.create');
-});
-
-
-Route::get('/movie/{id}', function ($id) {
-    $movie = Movie::find($id);
-    return view('movies.show', ['movie' => $movie]);
-});
-
-Route::post('/movie', function (){
-    request()->validate([
-        'title' => ['required'],
-        'director' => ['required'],
-        'protagonist' => ['required'],
-        'duration' => ['required', 'digits_between:1,3'],
-        'synopsis' => ['required', 'min:80'],
-        'release' => ['required', 'date_format:m-d-Y'],
-        'poster' => ['required'],
-        'genre' => ['required', 'min:5']
-    ]);
-    
-
-    Movie::create([
-        'title' => request('title'),
-        'director' =>  request('director'),
-        'protagonist' =>  request('protagonist'),
-        'duration' =>  request('duration'),
-        'synopsis' =>  request('synopsis'),
-        'release' =>  request('release'),
-        'poster' =>  request('poster'),
-        'genre' =>  request('genre')
-    ]);
-    return redirect('/movie');
-});
-
-Route::get('/theater', function () {
-    $theaters = Theater::with('showTime')->simplePaginate(4);
-    return view('theaters.index', [ 'theaters' => $theaters]);
-});
-
-Route::get('/theater/create', function () {
-    return view('theaters.create');
-});
-
-Route::get('/theater/{id}', function ($id) {
-    $theater = Theater::find($id);
-    return view('theaters.show', ['theater' => $theater]);
-});
-
-
+//CONTACT PAGE
 Route::get('/contact', function () {
     return view('contact');
 });
+
+//MOVIE ROUTES
+//movie index
+Route::get('/movie', [MovieController::class, 'index']);
+//create movie
+Route::get('/movie/create', [MovieController::class, 'create']);
+//show movie
+Route::get('/movie/{id}', [MovieController::class, 'show']);
+//store movie
+Route::post('/movie', [MovieController::class, 'store']);
+//edit movie
+Route::get('/movie/{id}/edit', [MovieController::class, 'edit']);
+//update movie
+Route::patch('/movie/{id}', [MovieController::class, 'update']);
+//destroy movie
+Route::delete('/movie/{id}', [MovieController::class, 'delete']);
+
+//THEATER ROUTES
+//theater index
+Route::get('/theater', [TheaterController::class, 'index']);
+//create theater
+Route::get('/theater/create', [TheaterController::class, 'create']);
+//show theater
+Route::get('/theater/{id}', [TheaterController::class, 'show']);
+//store theater
+Route::post('/theater', [TheaterController::class, 'store']);
+//edit theater
+Route::get('/theater/{id}/edit', [TheaterController::class, 'edit']);
+//update theater
+Route::patch('/theater/{id}', [TheaterController::class, 'update']);
+//destroy theater
+Route::delete('/theater/{id}', [TheaterController::class, 'delete']);
+
+

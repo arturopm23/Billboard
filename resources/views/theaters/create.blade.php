@@ -3,7 +3,7 @@
         Add a theater
     </x-slot:heading>
 
-<form method="POST" action="/movie">
+<form method="POST" action="/theater">
   @csrf
     <div>
       <div class="border-b border-gray-900/10 pb-12">
@@ -25,51 +25,37 @@
         </div>
 
         <div class="sm:col-span-1 pt-6">
-          <input id="3d-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" required>
-          <label for="3d-checkbox" class="ms-2 text-sm font-medium text-gray-900">3D</label>
-          @error('3d')
-          <p class="text-xs text-red-700 font-semibold mt-1">{{ $message }}</p>
-          @enderror
-      </div>
+  <input id="threeD" name="threeD" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+  <label for="threeD" class="ms-2 text-sm font-medium text-gray-900">3D</label>
+  @error('threeD')
+    <p class="text-xs text-red-700 font-semibold mt-1">{{ $message }}</p>
+  @enderror
+</div>
 
-      <div class="sm:col-span-1">
-          <input dolby id="dolby" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" required>
-          <label for="dolby" class="ms-2 text-sm font-medium text-gray-900">Dolby</label>
-          @error('dolby')
-          <p class="text-xs text-red-700 font-semibold mt-1">{{ $message }}</p>
-          @enderror
-      </div>
+<div class="sm:col-span-1">
+  <input id="dolby" name="dolby" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+  <label for="dolby" class="ms-2 text-sm font-medium text-gray-900">Dolby</label>
+  @error('dolby')
+    <p class="text-xs text-red-700 font-semibold mt-1">{{ $message }}</p>
+  @enderror
+</div>
+
           
 
-
-          <div class="col-span-full">
-            <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">Image</label>
-            <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-              <div class="text-center">
-                <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
-                </svg>
-                <div class="mt-4 flex text-sm leading-6 text-gray-600">
-                  <label for="image" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                    <span>Upload a file</span>
-                    <input id="image" name="file-upload" type="file" class="sr-only">
-                  </label>
-                  <p class="pl-1">or drag and drop</p>
-                </div>
-                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
-              </div>
-              @error('image')
-              <p class="text-xs text-red-700 font-semibold mt-1">{{ $message }}</p>
-              @enderror
-            </div>
+      <br>
+  <div class="col-span-full">
+          <label class="block mb-2 text-sm font-medium text-gray-900" for="poster">Upload file</label>
+          <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 " aria-describedby="poster_help" id="poster" type="file">
+            @error('poster')
+          <p class="text-xs text-red-700 font-semibold mt-1">{{ $message }}</p>
+          @enderror
           </div>
-        </div>
-      </div>
+          </div>
   
   
     <div class="mt-6 flex items-center justify-end gap-x-6">
       <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
-      <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+      <button type="submit" class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
     </div>
   </form>
   

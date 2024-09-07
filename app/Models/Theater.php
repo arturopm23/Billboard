@@ -9,6 +9,9 @@ class Theater extends Model {
 
     use HasFactory;
 
+    protected $fillable = ['name'];
+
+
     public function showTIme(){
         return $this->hasMany(ShowTime::class);
     }
