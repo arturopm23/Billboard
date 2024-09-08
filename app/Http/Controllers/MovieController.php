@@ -9,7 +9,7 @@ class MovieController extends Controller
 {
     public function index()
     {
-        $movies = Movie::with('showTime')->latest()->paginate(8);
+        $movies = Movie::latest()->paginate(8);
         return view('movies.index', ['movies' => $movies]);
     }
 

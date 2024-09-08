@@ -27,14 +27,20 @@
 </div>
 
 <div class="sm:col-span-1 pt-6">
-  <input id="threeD" name="threeD" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" {{ $theater->{'threeD'} ? 'checked' : '' }}>
-  <label for="threeD" class="ms-2 text-sm font-medium text-gray-900">3D</label>
-</div>
+                    <input id="threeD" name="threeD" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                    <label for="threeD" class="ms-2 text-sm font-medium text-gray-900">3D</label>
+                    @error('threeD')
+                    <p class="text-xs text-red-700 font-semibold mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
-<div class="sm:col-span-1">
-  <input id="dolby" name="dolby" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" {{ $theater->dolby ? 'checked' : '' }}>
-  <label for="dolby" class="ms-2 text-sm font-medium text-gray-900">Dolby</label>
-</div>
+                <div class="sm:col-span-1">
+                    <input id="dolby" name="dolby" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                    <label for="dolby" class="ms-2 text-sm font-medium text-gray-900">Dolby</label>
+                    @error('dolby')
+                    <p class="text-xs text-red-700 font-semibold mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
       <br>
                     <!-- Poster Upload Field -->
                     <div class="col-span-full">

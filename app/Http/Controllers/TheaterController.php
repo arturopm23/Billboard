@@ -24,11 +24,10 @@ class TheaterController extends Controller {
             'dolby' => 'boolean'
         ]);
     
+        $fileName = null;
         if (request()->hasFile('poster')) {
             $fileName = time() . '.' . request()->poster->extension();
             request()->poster->move(public_path('images/theater'), $fileName);
-        } else {
-            $fileName = null;
         }
     
         Theater::create([
@@ -73,8 +72,8 @@ class TheaterController extends Controller {
         $theater->update([
             'name' => request('name'),
             'poster' => $fileName,
-            'threeD' => request()->boolean('threeD'),
-            'dolby' => request()->boolean('dolby')
+            'threeD' => request('threeD', false),
+            'dolby' => request('dolby', false)
         ]);
     
         return redirect('/theater/' . $theater->id);
