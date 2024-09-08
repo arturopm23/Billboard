@@ -15,24 +15,31 @@ class TheaterController extends Controller {
         return view ('theaters.create');
     }
 
-    public function store(){
+    public function store() {
 
-            request()->validate([
-                'name' => ['required'],
-                'poster' => ['nullable|image|mimes:jpeg,png,jpg,gif|max:2048'],
-                'threeD' => ['boolean'],
-                'dolby' => ['boolean']
-            ]);
-        
-            Theater::create([
-                'name' => request('name'),
-                'poster' =>  request('poster'),
-                'threeD' =>  request('threeD'),
-                'dolby' =>  request('dolby')
-            ]);
-            return redirect('/theater');
-
-}
+        request()->validate([
+            'name' => 'required',
+            'poster' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'threeD' => 'boolean',
+            'dolby' => 'boolean'
+        ]);
+    
+        if (request()->hasFile('poster')) {
+            $fileName = time() . '.' . request()->poster->extension();
+            request()->poster->move(public_path('images/theater'), $fileName);
+        } else {
+            $fileName = null;
+        }
+    
+        Theater::create([
+            'name' => request('name'),
+            'poster' => $fileName,
+            'threeD' => request('threeD', false),
+            'dolby' => request('dolby', false)
+        ]);
+    
+        return redirect('/theater');
+    }
 
     public function show($id){
         $theater = Theater::findOrFail($id);
@@ -44,28 +51,34 @@ class TheaterController extends Controller {
     return view('theaters.edit', ['theater' => $theater]);
     }
 
-    public function update($id){
-
+    public function update($id) {
         request()->validate([
-            'name' => ['required'],
-            'poster' => ['nullable|image|mimes:jpeg,png,jpg,gif|max:2048'],
-            'threeD' => ['boolean'],
-            'dolby' => ['boolean']
+            'name' => 'required',
+            'poster' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'threeD' => 'boolean',
+            'dolby' => 'boolean'
         ]);
     
-        //update
-        $theater =  Theater::findOrFail($id);
+        $theater = Theater::findOrFail($id);
     
+        // Handle file upload
+        if (request()->hasFile('poster')) {
+            $fileName = time() . '.' . request()->poster->extension();
+            request()->poster->move(public_path('images/theater'), $fileName);
+        } else {
+            $fileName = $theater->poster; // Keep the old poster if no new file is uploaded
+        }
+    
+        // Update theater
         $theater->update([
             'name' => request('name'),
-            'poster' =>  request('poster'),
-            'threeD' =>  request('threeD'),
-            'dolby' =>  request('duration'),
-            'synopsis' =>  request('dolby')
+            'poster' => $fileName,
+            'threeD' => request()->boolean('threeD'),
+            'dolby' => request()->boolean('dolby')
         ]);
     
         return redirect('/theater/' . $theater->id);
-    }
+    }    
 
     public function delete($id){
         $theater = Theater::findOrFail($id);

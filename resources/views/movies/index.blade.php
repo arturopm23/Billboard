@@ -8,7 +8,7 @@
             @foreach ($movies as $movie)
             <div class="group relative">
                 <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75">
-                    <img src="https://m.media-amazon.com/images/I/81rNSKJlQuL._AC_UF894,1000_QL80_.jpg" alt="Movie poster for {{$movie['title']}}" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                <img src="{{ asset('images/movie/' . $movie['poster']) }}" alt="Poster for {{$movie['name']}}" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
                 </div>
                 <div class="mt-4 flex justify-between">
                     <div>
