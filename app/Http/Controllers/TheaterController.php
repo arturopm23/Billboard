@@ -19,7 +19,7 @@ class TheaterController extends Controller {
 
             request()->validate([
                 'name' => ['required'],
-                'poster' => ['required'],
+                'poster' => ['nullable|image|mimes:jpeg,png,jpg,gif|max:2048'],
                 'threeD' => ['boolean'],
                 'dolby' => ['boolean']
             ]);
@@ -48,7 +48,7 @@ class TheaterController extends Controller {
 
         request()->validate([
             'name' => ['required'],
-            //'poster' => ['required'],
+            'poster' => ['nullable|image|mimes:jpeg,png,jpg,gif|max:2048'],
             'threeD' => ['boolean'],
             'dolby' => ['boolean']
         ]);
@@ -58,7 +58,7 @@ class TheaterController extends Controller {
     
         $theater->update([
             'name' => request('name'),
-            //'poster' =>  request('poster'),
+            'poster' =>  request('poster'),
             'threeD' =>  request('threeD'),
             'dolby' =>  request('duration'),
             'synopsis' =>  request('dolby')

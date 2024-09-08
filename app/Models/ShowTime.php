@@ -9,6 +9,10 @@ class ShowTime extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['show_hour', 'show_day'];
+
+    
+
     public function theater(){
         return $this->belongsto(Theater::class);
     }

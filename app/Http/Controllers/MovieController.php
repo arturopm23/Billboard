@@ -24,7 +24,7 @@ class MovieController extends Controller {
         'duration' => ['required', 'digits_between:1,3'],
         'synopsis' => ['required', 'min:80'],
         'release' => ['required', 'date_format:m/d/Y'],
-        'poster' => ['required'],
+        'poster' => ['nullable|image|mimes:jpeg,png,jpg,gif|max:2048'],
         'genre' => ['required', 'min:5']
     ]);
 

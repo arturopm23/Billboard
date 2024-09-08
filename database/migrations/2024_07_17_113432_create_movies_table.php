@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('protagonist', 255)->nullable();
             $table->integer('duration');
             $table->text('synopsis')->nullable();
-            $table->datetime('release');
+            $table->date('release');
             $table->string('poster', 255)->nullable();
             $table->string('genre', 255)->nullable();
             $table->timestamps();
