@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('theaters', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
-            $table->string('poster');
-            $table->boolean('threeD');
-            $table->boolean('dolby');
+            $table->string('poster')->nullable();
+            $table->boolean('threeD')->default(false); // Set default to false
+            $table->boolean('dolby')->default(false);  // Set default to false
             $table->timestamps();
         });
     }

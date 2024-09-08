@@ -3,7 +3,7 @@
         Edit a theater: {{ $theater->name }}
     </x-slot:heading>
 
-<form method="POST" action="/theater/{{ $theater->id }}">
+<form method="POST" action="/theater/{{ $theater->id }}" enctype="multipart/form-data">
   @csrf
   @method('PATCH')
 
@@ -35,24 +35,23 @@
   <input id="dolby" name="dolby" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" {{ $theater->dolby ? 'checked' : '' }}>
   <label for="dolby" class="ms-2 text-sm font-medium text-gray-900">Dolby</label>
 </div>
-
-
       <br>
-  <div class="col-span-full">
-          <label class="block mb-2 text-sm font-medium text-gray-900" for="poster">Upload file</label>
-          <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 " aria-describedby="poster_help" id="poster" type="file">
-            @error('poster')
-          <p class="text-xs text-red-700 font-semibold mt-1">{{ $message }}</p>
-          @enderror
-          </div>
-          </div>
+                    <!-- Poster Upload Field -->
+                    <div class="col-span-full">
+                        <label class="block mb-2 text-sm font-medium text-gray-900" for="poster">Upload file</label>
+                        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 " aria-describedby="poster_help" id="poster" name="poster" type="file">
+                        @error('poster')
+                        <p class="text-xs text-red-700 font-semibold mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
   
-  
-    <div class="mt-6 flex items-center justify-end gap-x-6">
-      <a href="/theater/{{ $theater->id }}" class="text-sm font-semibold leading-6 text-gray-900">Cancel</a>
-      <button type="submit" class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Update</button>
-    </div>
-  </form>
-  
-
+                <!-- Form Buttons -->
+                <div class="mt-6 flex items-center justify-end gap-x-6">
+                    <a href="/theater/{{ $theater->id }}" class="text-sm font-semibold leading-6 text-gray-900">Cancel</a>
+                    <button type="submit" class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Update</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </x-layout>

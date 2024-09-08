@@ -29,7 +29,7 @@ Route::get('/movie/{id}/edit', [MovieController::class, 'edit']);
 //update movie
 Route::patch('/movie/{id}', [MovieController::class, 'update']);
 //destroy movie
-Route::delete('/movie/{id}', [MovieController::class, 'delete']);
+Route::delete('/movie/{id}/remove', [MovieController::class, 'delete']);
 
 //THEATER ROUTES
 //theater index
@@ -45,7 +45,7 @@ Route::get('/theater/{id}/edit', [TheaterController::class, 'edit']);
 //update theater
 Route::patch('/theater/{id}', [TheaterController::class, 'update']);
 //destroy theater
-Route::delete('/theater/{id}', [TheaterController::class, 'delete']);
+Route::delete('/theater/{id}/remove', [TheaterController::class, 'delete']);
 
 //SHOWTIME ROUTES
 //create showtime
@@ -57,7 +57,7 @@ Route::get('/showtime/{id}/edit', [ShowTimeController::class, 'edit']);
 //update showtime
 Route::patch('/showtime/{id}', [ShowTimeController::class, 'update']);
 //destroy showtime
-Route::delete('/showtime/{id}', [ShowTimeController::class, 'delete']);
+Route::delete('/showtime/{id}/remove', [ShowTimeController::class, 'delete']);
 
 
 
