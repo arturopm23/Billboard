@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('duration');
             $table->text('synopsis')->nullable();
             $table->date('release');
-            $table->string('poster', 255)->nullable();
+            $table->string('poster');
             $table->string('genre', 255)->nullable();
             $table->timestamps();
         });
