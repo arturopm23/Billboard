@@ -1,9 +1,8 @@
 <?php
 
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\ShowTimeController;
 use App\Http\Controllers\TheaterController;
-use App\Models\Movie;
-use App\Models\Theater;
 use Illuminate\Support\Facades\Route;
 
 //HOME PAGE
@@ -47,5 +46,18 @@ Route::get('/theater/{id}/edit', [TheaterController::class, 'edit']);
 Route::patch('/theater/{id}', [TheaterController::class, 'update']);
 //destroy theater
 Route::delete('/theater/{id}', [TheaterController::class, 'delete']);
+
+//SHOWTIME ROUTES
+//create showtime
+Route::get('/showtime/create', [ShowTimeController::class, 'create']);
+//store showtime
+Route::post('/showtime', [ShowTimeController::class, 'store']);
+//edit showtime
+Route::get('/showtime/{id}/edit', [ShowTimeController::class, 'edit']);
+//update showtime
+Route::patch('/showtime/{id}', [ShowTimeController::class, 'update']);
+//destroy showtime
+Route::delete('/showtime/{id}', [ShowTimeController::class, 'delete']);
+
 
 

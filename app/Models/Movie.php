@@ -8,12 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Movie extends Model {
 
     use HasFactory;
-
     protected $fillable = ['title', 'director', 'protagonist', 'duration', 'synopsis', 'release', 'poster', 'genre'];
 
     public function showTime(){
         return $this->hasMany(ShowTime::class);
     }
 }
-//->format(d-m-Y);
 ?>
