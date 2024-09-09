@@ -28,6 +28,7 @@
                 <x-nav-link href="/movie" :active="request()->is('movie')">Movies</x-nav-link>
                 <x-nav-link href="/theater" :active="request()->is('theater')">Theaters</x-nav-link>
                 <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
+                <x-nav-link href="/showtime" :active="request()->is('showtime')">Showtimes</x-nav-link>
               </div>
             </div>
           </div>
@@ -47,6 +48,7 @@
                 <x-nav-link href="/movie" :active="request()->is('movie')">Movies</x-nav-link>
                 <x-nav-link href="/theater" :active="request()->is('theater')">Theaters</x-nav-link>
                 <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
+                <x-nav-link href="/showtime" :active="request()->is('showtime')">Showtimes</x-nav-link>
         </div>
       </div>
     </nav>

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\ShowTime;
 use App\Models\Theater;
 use Illuminate\Support\Facades\Route;
 
@@ -42,7 +44,8 @@ class TheaterController extends Controller {
 
     public function show($id){
         $theater = Theater::findOrFail($id);
-        return view('theaters.show', ['theater' => $theater]);
+        $showtimes = ShowTime::with($theater->id);
+        return view('theaters.show', ['theater' => $theater, 'showtimes' => $showtimes]);
     }
 
     public function edit($id){

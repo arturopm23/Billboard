@@ -9,15 +9,15 @@ class ShowTime extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['show_hour', 'show_day'];
+    protected $fillable = ['show_hour', 'show_day', 'movie_id', 'theater_id'];
 
-    
-
-    public function theater(){
-        return $this->belongsto(Theater::class);
+    public function theater()
+    {
+        return $this->belongsTo(Theater::class);
     }
 
-    public function movie(){
+    public function movie()
+    {
         return $this->belongsTo(Movie::class);
     }
 }

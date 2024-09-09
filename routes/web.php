@@ -47,17 +47,18 @@ Route::patch('/theater/{id}', [TheaterController::class, 'update']);
 //destroy theater
 Route::delete('/theater/{id}/remove', [TheaterController::class, 'delete']);
 
-//SHOWTIME ROUTES
-//create showtime
-Route::get('/showtime/create', [ShowTimeController::class, 'create']);
-//store showtime
-Route::post('/showtime', [ShowTimeController::class, 'store']);
-//edit showtime
-Route::get('/showtime/{id}/edit', [ShowTimeController::class, 'edit']);
-//update showtime
-Route::patch('/showtime/{id}', [ShowTimeController::class, 'update']);
-//destroy showtime
-Route::delete('/showtime/{id}/remove', [ShowTimeController::class, 'delete']);
-
-
-
+// SHOWTIME ROUTES
+// Index
+Route::get('/showtime', [ShowTimeController::class, 'index'])->name('showtimes.index');
+// Create
+Route::get('/showtime/create', [ShowTimeController::class, 'create'])->name('showtimes.create');
+// Show
+Route::get('/showtime/{id}', [ShowTimeController::class, 'show'])->name('showtimes.show');
+// Store
+Route::post('/showtime', [ShowTimeController::class, 'store'])->name('showtimes.store');
+// Edit
+Route::get('/showtime/{id}/edit', [ShowTimeController::class, 'edit'])->name('showtimes.edit');
+// Update
+Route::patch('/showtime/{id}', [ShowTimeController::class, 'update'])->name('showtimes.update');
+// Destroy
+Route::delete('/showtime/{id}', [ShowTimeController::class, 'destroy'])->name('showtimes.destroy');
