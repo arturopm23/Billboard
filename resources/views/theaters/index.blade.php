@@ -2,9 +2,16 @@
     <x-slot:heading>
         Theaters
     </x-slot:heading>
-    
-    <div class="space-y-4">
-        <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+
+    <div class="space-y-2">
+        <!-- Button to add a new theater -->
+        <div class="flex justify-end">
+            <a href="/theater/create" class="bg-black hover:bg-black text-white font-bold py-2 px-4 rounded">
+                Add New Theater
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-8">
             @foreach ($theaters as $theater)
             <div class="group relative">
                 <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75">
@@ -23,6 +30,7 @@
             </div>
             @endforeach
         </div>
+        
         <div>
             {{ $theaters->links() }}
         </div>

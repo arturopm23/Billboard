@@ -44,8 +44,7 @@ class TheaterController extends Controller {
 
     public function show($id){
         $theater = Theater::findOrFail($id);
-        $showtimes = ShowTime::with($theater->id);
-        return view('theaters.show', ['theater' => $theater, 'showtimes' => $showtimes]);
+        return view('theaters.show', ['theater' => $theater]);
     }
 
     public function edit($id){
