@@ -4,15 +4,16 @@
         Showtimes
     </x-slot:heading>
 
+    <div class="space-y-2">
+    <div class="flex justify-end">
+        <!-- Add Showtime Button -->
+                <a href="{{ route('showtimes.create') }}" class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500">Add Showtime</a>
+            </div>
     <!-- Showtimes List -->
     <div class="mt-10">
         <div class="border-b border-gray-900/10 pb-12">
-            <h2 class="text-lg font-semibold text-gray-900">All Showtimes</h2>
 
-            <!-- Add Showtime Button -->
-            <div class="mt-4">
-                <a href="{{ route('showtimes.create') }}" class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500">Add Showtime</a>
-            </div>
+            
 
             <!-- Table of Showtimes -->
             <div class="mt-6 overflow-x-auto">
@@ -54,4 +55,5 @@
             @endif
         </div>
     </div>
+</div>
 </x-layout>

@@ -4,6 +4,12 @@
     </x-slot:heading>
     
     <div class="space-y-4">
+        <!-- Button to add a new movie -->
+        <div class="flex justify-end">
+            <a href="/movie/create" class="bg-black hover:bg-black text-white font-bold py-2 px-4 rounded">
+                Add New Movie
+            </a>
+        </div>
         <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             @foreach ($movies as $movie)
             <div class="group relative">

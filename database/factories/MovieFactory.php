@@ -23,7 +23,7 @@ class MovieFactory extends Factory
             'duration' => $this->faker->numberBetween($min = 60, $max = 180), // Assuming duration is in minutes
             'synopsis' => $this->faker->paragraph(),
             'release' => $this->faker->date(),
-            'poster' => $this->faker->imageUrl($width = 640, $height = 480),
+            'poster' => '1726735688.jpg',
             'genre' => $this->faker->word(),
             'created_at' => now(),
             'updated_at' => now(),
