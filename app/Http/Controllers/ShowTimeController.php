@@ -15,7 +15,10 @@ class ShowTimeController extends Controller
     }
 
     public function index() {
-        $showtimes = ShowTime::with('movie', 'theater')->get();
+        $showtimes = ShowTime::orderBy('show_day', 'asc')
+                     ->orderBy('show_hour', 'desc')
+                     ->with('movie', 'theater') // Ensure the movie and theater relationships are eager loaded
+                     ->get();
         return view('showtimes.index', compact('showtimes'));
     }
     
