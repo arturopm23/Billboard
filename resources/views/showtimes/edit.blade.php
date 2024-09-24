@@ -56,39 +56,36 @@
                 <!-- Showtime Hour Selection -->
                 <div class="sm:col-span-3">
                     <label for="show_hour" class="block mb-2 text-sm font-medium text-gray-900">Select Showtime Hour</label>
-                    <select 
+                    <input 
+                        type="time" 
                         id="show_hour" 
                         name="show_hour" 
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required
-                    >
-                        <option selected>Choose an hour</option>
-                        @foreach (['13:00', '16:00', '20:00', '23:00'] as $hour)
-                        <option value="{{ $hour }}" {{ $hour == $showtime->show_hour ? 'selected' : '' }}>
-                            {{ $hour }}
-                        </option>
-                        @endforeach
-                    </select>
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
+                        min="08:00" 
+                        max="00:00" 
+                        value="{{ old('show_hour', $showtime->show_hour) }}" 
+                        required 
+                    />
                     @error('show_hour')
                     <p class="text-xs text-red-700 font-semibold mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <!-- Day Selection -->
-<div class="sm:col-span-3">
-    <label for="show_day" class="block mb-2 text-sm font-medium text-gray-900">Select a Day</label>
-    <input 
-        type="date" 
-        id="show_day" 
-        name="show_day" 
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
-        value="{{ old('show_day', $showtime->show_day->format('Y-m-d')) }}" 
-        required
-    />
-    @error('show_day')
-    <p class="text-xs text-red-700 font-semibold mt-1">{{ $message }}</p>
-    @enderror
-</div>
-
+                <div class="sm:col-span-3">
+                    <label for="show_day" class="block mb-2 text-sm font-medium text-gray-900">Select a Day</label>
+                    <input 
+                        type="date" 
+                        id="show_day" 
+                        name="show_day" 
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
+                        value="{{ old('show_day', $showtime->show_day->format('Y-m-d')) }}" 
+                        required
+                    />
+                    @error('show_day')
+                    <p class="text-xs text-red-700 font-semibold mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
             </div>
         </div>
 

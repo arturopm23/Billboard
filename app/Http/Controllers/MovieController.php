@@ -18,38 +18,40 @@ class MovieController extends Controller
         return view('movies.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        request()->validate([
+        // Validate the request data
+        $request->validate([
             'title' => ['required'],
             'director' => ['required'],
             'protagonist' => ['required'],
             'duration' => ['required', 'digits_between:1,3'],
             'synopsis' => ['required', 'min:80'],
-            'release' => ['required', 'date_format:m/d/Y'],
+            'release' => ['required', 'date_format:Y-m-d'], // Corrected date format
             'poster' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'genre' => ['required', 'min:5']
         ]);
 
         // Handle file upload
         $fileName = null;
-        if (request()->hasFile('poster')) {
-            $fileName = time() . '.' . request()->poster->extension();
-            request()->poster->move(public_path('images/movie'), $fileName);
+        if ($request->hasFile('poster')) {
+            $fileName = time() . '.' . $request->poster->extension();
+            $request->poster->move(public_path('images/movie'), $fileName);
         }
 
+        // Create the movie
         Movie::create([
-            'title' => request()->title,
-            'director' => request()->director,
-            'protagonist' => request()->protagonist,
-            'duration' => request()->duration,
-            'synopsis' => request()->synopsis,
-            'release' => request()->release,
+            'title' => $request->title,
+            'director' => $request->director,
+            'protagonist' => $request->protagonist,
+            'duration' => $request->duration,
+            'synopsis' => $request->synopsis,
+            'release' => $request->release,
             'poster' => $fileName,
-            'genre' => request()->genre
+            'genre' => $request->genre
         ]);
 
-        return redirect('/movie');
+        return redirect('/movie')->with('success', 'Movie created successfully.');
     }
 
     public function show($id)
@@ -64,15 +66,16 @@ class MovieController extends Controller
         return view('movies.edit', ['movie' => $movie]);
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        request()->validate([
+        // Validate the request data
+        $request->validate([
             'title' => ['required'],
             'director' => ['required'],
             'protagonist' => ['required'],
             'duration' => ['required', 'digits_between:1,3'],
             'synopsis' => ['required', 'min:80'],
-            'release' => ['required', 'date_format:Y-m-d'], // Changed date format to match standard
+            'release' => ['required', 'date_format:Y-m-d'], // Corrected date format
             'poster' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'genre' => ['required', 'min:5']
         ]);
@@ -80,31 +83,32 @@ class MovieController extends Controller
         $movie = Movie::findOrFail($id);
 
         // Handle file upload
-        if (request()->hasFile('poster')) {
-            $fileName = time() . '.' . request()->poster->extension();
-            request()->poster->move(public_path('images/movie'), $fileName);
+        if ($request->hasFile('poster')) {
+            $fileName = time() . '.' . $request->poster->extension();
+            $request->poster->move(public_path('images/movie'), $fileName);
         } else {
             $fileName = $movie->poster; // Retain existing poster if no new file is uploaded
         }
 
+        // Update the movie
         $movie->update([
-            'title' => request()->title,
-            'director' => request()->director,
-            'protagonist' => request()->protagonist,
-            'duration' => request()->duration,
-            'synopsis' => request()->synopsis,
-            'release' => request()->release,
+            'title' => $request->title,
+            'director' => $request->director,
+            'protagonist' => $request->protagonist,
+            'duration' => $request->duration,
+            'synopsis' => $request->synopsis,
+            'release' => $request->release,
             'poster' => $fileName,
-            'genre' => request()->genre
+            'genre' => $request->genre
         ]);
 
-        return redirect('/movie/' . $movie->id);
+        return redirect('/movie/' . $movie->id)->with('success', 'Movie updated successfully.');
     }
 
     public function delete($id)
     {
         $movie = Movie::findOrFail($id);
         $movie->delete();
-        return redirect('/movie');
+        return redirect('/movie')->with('success', 'Movie deleted successfully.');
     }
 }

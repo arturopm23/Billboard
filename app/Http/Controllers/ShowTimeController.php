@@ -32,21 +32,23 @@ class ShowTimeController extends Controller
         request()->validate([
             'movie_id' => ['required', 'exists:movies,id'],
             'theater_id' => ['required', 'exists:theaters,id'],
-            'show_hour' => ['required'],
-            'show_day' => ['required', 'date']
+            'show_hour' => ['required', 'date_format:H:i'], // Ensure show_hour is validated correctly
+            'show_day' => ['required', 'date_format:Y-m-d'] // The day field must be a valid date
         ]);
-
+    
         // Store the new showtime
         ShowTime::create([
-            'movie_id' => request('movie_id'),
-            'theater_id' => request('theater_id'),
+            'movie_id' => request('movie_id'), // Change here
+            'theater_id' => request('theater_id'), // Change here
             'show_hour' => request('show_hour'),
-            'show_day' => request('show_day')
+            'show_day' => request('show_day') // Change here
         ]);
-
+    
         // Redirect to index with success message
-        return redirect()->route('showtimes.index')->with('success', 'Showtime created successfully');
+        return redirect()->route('showtimes.index');
     }
+    
+    
 
     public function edit($id) {
         $showtime = ShowTime::findOrFail($id);
@@ -66,8 +68,8 @@ class ShowTimeController extends Controller
         request()->validate([
             'movie_id' => ['required', 'exists:movies,id'],
             'theater_id' => ['required', 'exists:theaters,id'],
-            'show_hour' => ['required'],
-            'show_day' => ['required', 'date']
+            'show_hour' => ['required', 'date_format:H:i'],
+            'show_day' => ['required', 'date_format:Y-m-d']
         ]);
     
         // Find the showtime and update it

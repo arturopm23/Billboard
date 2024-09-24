@@ -4,10 +4,6 @@
         Showtimes
     </x-slot:heading>
 
-    <!-- Divider -->
-    <div class="border-t border-gray-200 my-4"></div>
-
-    <div class="space-y-2">
         <div class="flex justify-end">
             <!-- Add Showtime Button -->
             <a href="{{ route('showtimes.create') }}" class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500">Add Showtime</a>

@@ -9,6 +9,8 @@ class ShowTime extends Model
 {
     use HasFactory;
 
+    protected $table = 'showtimes';
+
     protected $fillable = ['show_hour', 'show_day', 'movie_id', 'theater_id'];
 
     public function theater()
