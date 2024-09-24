@@ -7,10 +7,14 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $movies = Movie::latest()->paginate(8);
-        return view('movies.index', ['movies' => $movies]);
+        $sortBy = $request->input('sort_by', 'title');
+        $orderBy = $request->input('order_by', 'asc'); // Default to ascending
+    
+        $movies = Movie::orderBy($sortBy, $orderBy)->paginate(10);
+    
+        return view('movies.index', compact('movies'));
     }
 
     public function create()
