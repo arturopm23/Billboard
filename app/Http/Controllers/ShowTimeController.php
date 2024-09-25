@@ -20,7 +20,7 @@ class ShowTimeController extends Controller
                      ->orderBy('show_hour', 'desc')
                      ->with('movie', 'theater') // Eager load movie and theater relationships
                      ->get();
-    
+     
         // Retrieve all movies and theaters for the view
         $movies = Movie::all();
         $theaters = Theater::all();
