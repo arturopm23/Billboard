@@ -84,12 +84,14 @@
                     </div>
 
                     <div class="col-span-full">
-                        <label for="poster" class="block mb-2 text-sm font-medium text-gray-900">Upload file</label>
-                        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50" aria-describedby="poster_help" id="poster" name="poster" type="file">
-                        @error('poster')
-                        <p class="text-xs text-red-700 font-semibold mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
+    <label for="poster" class="block mb-2 text-sm font-medium text-gray-900">Upload file</label>
+    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50" 
+           aria-describedby="poster_help" id="poster" name="poster" type="file" required>
+    @error('poster')
+    <p class="text-xs text-red-700 font-semibold mt-1">{{ $message }}</p>
+    @enderror
+</div>
+
 
                 </div>
 

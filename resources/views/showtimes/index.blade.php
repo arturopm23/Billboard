@@ -4,13 +4,21 @@
         Showtimes
     </x-slot:heading>
 
-        <div class="flex justify-end">
-            <!-- Add Showtime Button -->
-            <a href="{{ route('showtimes.create') }}" class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500">Add Showtime</a>
-        </div>
-        <!-- Showtimes List -->
-        <div class="mt-10">
-            <div class="border-b border-gray-900/10 pb-12">
+    <div class="flex justify-end">
+        <!-- Add Showtime Button -->
+        <a href="{{ route('showtimes.create') }}" class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500">Add Showtime</a>
+    </div>
+
+    <!-- Showtimes List -->
+    <div class="mt-10">
+        <div class="border-b border-gray-900/10 pb-12">
+            @if($showtimes->isEmpty())
+                <p class="mt-4 text-sm text-gray-500">No showtimes available.</p>
+            @elseif($movies->isEmpty())
+                <p class="mt-4 text-sm text-gray-500">No films available.</p>
+            @elseif($theaters->isEmpty())
+                <p class="mt-4 text-sm text-gray-500">No theaters available.</p>
+            @else
                 <!-- Table of Showtimes -->
                 <div class="mt-6 overflow-x-auto">
                     <table class="min-w-full bg-white">
@@ -48,12 +56,7 @@
                         </tbody>
                     </table>
                 </div>
-
-                <!-- No showtimes message -->
-                @if($showtimes->isEmpty())
-                    <p class="mt-4 text-sm text-gray-500">No showtimes available.</p>
-                @endif
-            </div>
+            @endif
         </div>
     </div>
 </x-layout>
